@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* MusicMachine Color Palette */
+    --color-blue-light: #E0F2FE;
+    --color-blue-medium: #A5D8FF;
+    --color-blue-dark: #72C2FF; /* Used as the darker shade in background gradient */
+    --color-text-black: #000000;
+    --color-contrast-light-grey: #F5F5F5;
+    --color-contrast-cream: #FFF8E1;
+
+    /* Mapping to Tailwind-like semantic variables */
+    --background-start: var(--color-blue-dark);
+    --background-end: var(--color-blue-light);
+    --foreground: var(--color-text-black);
+
+    --primary: var(--color-blue-medium); /* Example primary color for UI elements */
+    --primary-foreground: var(--color-text-black);
+
+    --card: var(--color-contrast-cream); /* Default card background */
+    --card-foreground: var(--color-text-black);
+
+    --popover: var(--color-contrast-light-grey);
+    --popover-foreground: var(--color-text-black);
+
+    --secondary: var(--color-blue-light);
+    --secondary-foreground: var(--color-text-black);
+
+    --muted: var(--color-blue-light);
+    --muted-foreground: #555555; /* A slightly lighter black for muted text */
+
+    --accent: var(--color-blue-medium);
+    --accent-foreground: var(--color-text-black);
+
+    --destructive: #FF5252; /* A generic destructive color */
+    --destructive-foreground: #FFFFFF;
+
+    --border: var(--color-blue-medium); /* Borders could use a medium blue */
+    --input: var(--color-contrast-light-grey);
+    --ring: var(--color-blue-dark);
+
+    --radius: 0.5rem; /* For slightly rounded corners, as requested */
+  }
+
+  /* Dark mode is not explicitly requested, so we focus on the light theme.
+     If dark mode were needed, similar variables would be defined under .dark {} */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body {
+    height: 100%; /* Ensure html and body take full height for gradient */
+  }
+  body {
+    @apply text-foreground;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif; /* Readable body font */
+    background-image: linear-gradient(to bottom, var(--background-start), var(--background-end));
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensures gradient covers the whole viewport */
+    color: var(--foreground);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--foreground);
+  }
+
+  /* Specific style for the main header title - Impact font */
+  .site-header-title {
+    font-family: 'Impact', Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: var(--color-text-black);
+    /* The 5pt blue outline is tricky with pure CSS text. 
+       It might require text-shadow or SVG text, or be a design compromise.
+       A simple text-shadow can emulate an outline: */
+    text-shadow: 
+      -1px -1px 0 var(--color-blue-medium),
+       1px -1px 0 var(--color-blue-medium),
+      -1px  1px 0 var(--color-blue-medium),
+       1px  1px 0 var(--color-blue-medium);
+    /* A 5pt outline is very thick. 1px shadow is a starting point. This will be refined. */
+  }
+}
+
